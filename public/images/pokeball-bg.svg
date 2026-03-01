@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+    <!-- Bottom half (background white) -->
+    <circle cx="60" cy="60" r="54" fill="#ffffff" stroke="#222224" stroke-width="8"/>
+    <!-- Top half (red) -->
+    <path d="M 6 60 A 54 54 0 0 1 114 60 Z" fill="#EE1515" />
+    <!-- Horizontal black bar -->
+    <rect x="6" y="56" width="108" height="8" fill="#222224" />
+    <!-- Outer center circle -->
+    <circle cx="60" cy="60" r="18" fill="#ffffff" stroke="#222224" stroke-width="8"/>
+    <!-- Inner center circle -->
+    <circle cx="60" cy="60" r="8" fill="#ffffff" stroke="#222224" stroke-width="3"/>
+    <!-- Overriding outer border to crisp it up -->
+    <circle cx="60" cy="60" r="54" fill="none" stroke="#222224" stroke-width="8"/>
+</svg>

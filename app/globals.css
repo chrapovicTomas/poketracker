@@ -1,0 +1,478 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* LIGHT MODE VARS (Pokemon Theme) */
+  --background: #f4f4f9;
+  --surface: #ffffff;
+  --primary: #EE1515;
+  /* Pokeball Red */
+  --primary-glow: rgba(238, 21, 21, 0.4);
+  --secondary: #3B4CCA;
+  /* Pokemon Blue */
+  --text-primary: #222224;
+  --text-secondary: #666666;
+  --danger: #ff4b4b;
+  --danger-glow: rgba(255, 75, 75, 0.4);
+  --success: #10b981;
+  --success-glow: rgba(16, 185, 129, 0.4);
+  --border: rgba(0, 0, 0, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.05);
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --card-hover-shadow: 0 12px 30px rgba(238, 21, 21, 0.15);
+  --card-hover-transform: translateY(-5px);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* DARK MODE VARS (Pokemon Theme) */
+[data-theme="dark"] {
+  --background: #121216;
+  --surface: #1e1e24;
+  --primary: #EE1515;
+  --primary-glow: rgba(238, 21, 21, 0.4);
+  --secondary: #4A90E2;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a5;
+  --danger: #ff5e5e;
+  --danger-glow: rgba(255, 94, 94, 0.4);
+  --success: #4ade80;
+  --success-glow: rgba(74, 222, 128, 0.4);
+  --border: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(30, 30, 36, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  --card-hover-shadow: 0 12px 30px rgba(238, 21, 21, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background: #121216;
+    --surface: #1e1e24;
+    --primary: #EE1515;
+    --primary-glow: rgba(238, 21, 21, 0.4);
+    --secondary: #4A90E2;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a5;
+    --danger: #ff5e5e;
+    --danger-glow: rgba(255, 94, 94, 0.4);
+    --success: #4ade80;
+    --success-glow: rgba(74, 222, 128, 0.4);
+    --border: rgba(255, 255, 255, 0.1);
+    --glass-bg: rgba(30, 30, 36, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.05);
+    --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    --card-hover-shadow: 0 12px 30px rgba(238, 21, 21, 0.3);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Background animated gradient blobs */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: -1;
+  opacity: 0.3;
+  animation: float 20s infinite ease-in-out;
+}
+
+body::before {
+  top: -10%;
+  left: -10%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+}
+
+body::after {
+  bottom: -10%;
+  right: -10%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(59, 76, 202, 0.3) 0%, transparent 70%);
+  animation-delay: -10s;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(50px) scale(1.05);
+  }
+}
+
+/* Glassmorphism utilities */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--card-shadow);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Pokeball Header Design */
+.pokeball-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+  position: relative;
+}
+
+.main-logo {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+}
+
+.pokeball-logo-alt {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: 60%;
+  border: 3px solid var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.pokeball-logo-alt::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: var(--primary);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.pokeball-logo-alt-center {
+  width: 40px;
+  height: 40px;
+  background-color: var(--background);
+  border: 3px solid var(--secondary);
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.header-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.header-title span {
+  color: var(--primary);
+}
+
+/* Typography */
+p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Cards layout (The 4 columns requirement) */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+/* Add New Card Button (The + Card) */
+.add-card-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  cursor: pointer;
+  border: 2px dashed var(--border);
+  background: transparent;
+  transition: var(--transition);
+  color: var(--text-secondary);
+}
+
+.add-card-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(238, 21, 21, 0.05);
+  transform: var(--card-hover-transform);
+}
+
+.add-card-btn svg {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.add-card-btn:hover svg {
+  transform: scale(1.1);
+}
+
+/* Elegant Empty State Button */
+.empty-state-btn {
+  border: 2px solid transparent;
+  background: linear-gradient(var(--surface), var(--surface)) padding-box,
+    linear-gradient(45deg, var(--primary), var(--secondary)) border-box;
+  color: var(--text-primary);
+  min-height: 180px;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.empty-state-btn:hover {
+  box-shadow: 0 10px 30px var(--primary-glow);
+  transform: translateY(-5px);
+  background: linear-gradient(var(--background), var(--background)) padding-box,
+    linear-gradient(45deg, var(--secondary), var(--primary)) border-box;
+}
+
+.empty-state-btn .plus-icon-wrapper {
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: white;
+  box-shadow: 0 4px 15px rgba(238, 21, 21, 0.3);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.empty-state-btn:hover .plus-icon-wrapper {
+  transform: scale(1.15) rotate(90deg);
+}
+
+.empty-state-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-glow);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  box-shadow: 0 4px 10px var(--primary-glow);
+}
+
+.btn-primary:hover {
+  background-color: #d11212;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px var(--primary-glow);
+}
+
+/* Modal for Add Form */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: var(--background);
+  border-radius: var(--radius-md);
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+  position: relative;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border);
+}
+
+.modal-overlay.open .modal-content {
+  transform: scale(1);
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: var(--danger);
+}
+
+.background-pokeballs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.bg-pb {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.05;
+}
+
+.pb-1 {
+  top: 10%;
+  left: 5%;
+  width: 150px;
+  transform: rotate(-15deg);
+}
+
+.pb-2 {
+  top: 60%;
+  right: -5%;
+  width: 300px;
+  transform: rotate(45deg);
+}
+
+.pb-3 {
+  top: 80%;
+  left: 20%;
+  width: 200px;
+  transform: rotate(-30deg);
+}
+
+.pb-4 {
+  top: 20%;
+  right: 15%;
+  width: 120px;
+  transform: rotate(20deg);
+}
+
+.pb-5 {
+  top: 40%;
+  left: -10%;
+  width: 400px;
+  transform: rotate(60deg);
+}
+
+.pb-6 {
+  top: -5%;
+  left: 45%;
+  width: 250px;
+  transform: rotate(180deg);
+}
+
+[data-theme="dark"] .bg-pb {
+  opacity: 0.05;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .bg-pb {
+    opacity: 0.05;
+  }
+}

@@ -1,0 +1,17 @@
+.add-form-container {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+}
+
+.add-form-container h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    color: var(--primary);
+}
+
+.inline-icon {
+    margin-right: 0.5rem;
+    vertical-align: text-bottom;
+    color: var(--primary);
+}
